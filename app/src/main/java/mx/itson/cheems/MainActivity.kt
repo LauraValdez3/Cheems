@@ -57,10 +57,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             val vibrator = vibratorAdmin.defaultVibrator
             vibrator.vibrate(VibrationEffect.createOneShot(1000, VibrationEffect.DEFAULT_AMPLITUDE))
         } else {
-            //si es menor a l 12, lo va a hacer de esta manera
             val vibrator = applicationContext.getSystemService(Context.VIBRATOR_SERVICE)as Vibrator
         }
 
+        //Para evitar que el usuario haga clic varias veces en la misma carta, se desactiva la carta después de voltearla
         val btnCard = findViewById<View>(
             resources.getIdentifier("card$card", "id", this.packageName)
         ) as ImageButton
@@ -84,13 +84,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             checkWin()
         }
     }
-
+    //Verifica si el jugador ha volteado 5 cartas sin voltear la carta perdedora
     fun checkWin() {
         if (flippedCards == 5) {
             Toast.makeText(this, R.string.text_win, Toast.LENGTH_SHORT).show()
         }
     }
 
+    //Se implementó la función restartGame(), que simplemente llama a start() para reiniciar
     fun restartGame() {
         start()
     }
