@@ -37,9 +37,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         start()
     }
 
+    fun flipAllCards(card: Int) {
+        TODO("Not yet implemented")
+    }
+
     fun start() {
+        Toast.makeText(this, getString(R.string.welcome_message), Toast.LENGTH_SHORT).show()
         flippedCards = 0
-        for (i in 1..6) {
+        for (i in 1..12) {
             val btnCard = findViewById<View>(
                 resources.getIdentifier("card$i", "id", this.packageName)
             ) as ImageButton
@@ -47,7 +52,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             btnCard.setBackgroundResource(R.drawable.icon_pregunta)
             btnCard.isEnabled = true
         }
-        gameOverCard = (1..6).random()
+        gameOverCard = (1..12).random()
         Log.d("El valor de la carta", "La carta perdedora es ${gameOverCard}")
     }
 
@@ -68,7 +73,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         if (card == gameOverCard) {
             Toast.makeText(this, getString(R.string.text_game_over), Toast.LENGTH_SHORT).show()
-            for (i in 1..6) {
+            for (i in 1..12) {
                 val btnCard = findViewById<View>(
                     resources.getIdentifier("card$i", "id", this.packageName)
                 ) as ImageButton
@@ -86,7 +91,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
     //Verifica si el jugador ha volteado 5 cartas sin voltear la carta perdedora
     fun checkWin() {
-        if (flippedCards == 5) {
+        if (flippedCards == 11) {
             Toast.makeText(this, R.string.text_win, Toast.LENGTH_SHORT).show()
         }
     }
@@ -96,6 +101,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         start()
     }
 
+
+
     override fun onClick(v: View) {
         when (v.id) {
             R.id.card1 -> flip(1)
@@ -104,6 +111,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.card4 -> flip(4)
             R.id.card5 -> flip(5)
             R.id.card6 -> flip(6)
+            R.id.card7 -> flip(7)
+            R.id.card8 -> flip(8)
+            R.id.card9 -> flip(9)
+            R.id.card10 -> flip(10)
+            R.id.card11-> flip(11)
+            R.id.card12 -> flip(12)
         }
     }
 }
